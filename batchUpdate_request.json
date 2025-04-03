@@ -1,0 +1,437 @@
+{
+  "includeFormInResponse": false,
+  "requests": [
+    {
+      "createItem": {
+        "item": {
+          "itemId": "00000000",
+          "title": "start_time",
+          "description": "",
+          "questionItem": {
+            "question": {
+              "questionId": "1000",
+              "textQuestion": {}
+            }
+          }
+        },
+        "location": {
+          "index": 0
+        }
+      }
+    },
+    {
+      "createItem": {
+        "item": {
+          "itemId": "00000001",
+          "title": "end_time",
+          "description": "",
+          "questionItem": {
+            "question": {
+              "questionId": "1001",
+              "textQuestion": {}
+            }
+          }
+        },
+        "location": {
+          "index": 1
+        }
+      }
+    },
+    {
+      "createItem": {
+        "item": {
+          "itemId": "00000002",
+          "title": "turn",
+          "description": "",
+          "questionItem": {
+            "question": {
+              "questionId": "1002",
+              "textQuestion": {}
+            }
+          }
+        },
+        "location": {
+          "index": 2
+        }
+      }
+    },
+    {
+      "createItem": {
+        "item": {
+          "itemId": "00000003",
+          "title": "first_player_color",
+          "description": "",
+          "questionItem": {
+            "question": {
+              "questionId": "1003",
+              "textQuestion": {}
+            }
+          }
+        },
+        "location": {
+          "index": 3
+        }
+      }
+    },
+    {
+      "createItem": {
+        "item": {
+          "itemId": "00000004",
+          "title": "placement_1_name",
+          "description": "",
+          "questionItem": {
+            "question": {
+              "questionId": "1004",
+              "textQuestion": {}
+            }
+          }
+        },
+        "location": {
+          "index": 4
+        }
+      }
+    },
+    {
+      "createItem": {
+        "item": {
+          "itemId": "00000005",
+          "title": "placement_1_leader",
+          "description": "",
+          "questionItem": {
+            "question": {
+              "questionId": "1005",
+              "textQuestion": {}
+            }
+          }
+        },
+        "location": {
+          "index": 5
+        }
+      }
+    },
+    {
+      "createItem": {
+        "item": {
+          "itemId": "00000006",
+          "title": "placement_1_steamuui",
+          "description": "",
+          "questionItem": {
+            "question": {
+              "questionId": "1006",
+              "textQuestion": {}
+            }
+          }
+        },
+        "location": {
+          "index": 6
+        }
+      }
+    },
+    {
+      "createItem": {
+        "item": {
+          "itemId": "00000007",
+          "title": "placement_1_color",
+          "description": "",
+          "questionItem": {
+            "question": {
+              "questionId": "1007",
+              "textQuestion": {}
+            }
+          }
+        },
+        "location": {
+          "index": 7
+        }
+      }
+    },
+    {
+      "createItem": {
+        "item": {
+          "itemId": "00000008",
+          "title": "placement_2_name",
+          "description": "",
+          "questionItem": {
+            "question": {
+              "questionId": "1008",
+              "textQuestion": {}
+            }
+          }
+        },
+        "location": {
+          "index": 8
+        }
+      }
+    },
+    {
+      "createItem": {
+        "item": {
+          "itemId": "00000009",
+          "title": "placement_2_leader",
+          "description": "",
+          "questionItem": {
+            "question": {
+              "questionId": "1009",
+              "textQuestion": {}
+            }
+          }
+        },
+        "location": {
+          "index": 9
+        }
+      }
+    },
+    {
+      "createItem": {
+        "item": {
+          "itemId": "00000010",
+          "title": "placement_2_steamuui",
+          "description": "",
+          "questionItem": {
+            "question": {
+              "questionId": "1010",
+              "textQuestion": {}
+            }
+          }
+        },
+        "location": {
+          "index": 10
+        }
+      }
+    },
+    {
+      "createItem": {
+        "item": {
+          "itemId": "00000011",
+          "title": "placement_2_color",
+          "description": "",
+          "questionItem": {
+            "question": {
+              "questionId": "1011",
+              "textQuestion": {}
+            }
+          }
+        },
+        "location": {
+          "index": 11
+        }
+      }
+    },
+    {
+      "createItem": {
+        "item": {
+          "itemId": "00000012",
+          "title": "placement_3_name",
+          "description": "",
+          "questionItem": {
+            "question": {
+              "questionId": "1012",
+              "textQuestion": {}
+            }
+          }
+        },
+        "location": {
+          "index": 12
+        }
+      }
+    },
+    {
+      "createItem": {
+        "item": {
+          "itemId": "00000013",
+          "title": "placement_3_leader",
+          "description": "",
+          "questionItem": {
+            "question": {
+              "questionId": "1013",
+              "textQuestion": {}
+            }
+          }
+        },
+        "location": {
+          "index": 13
+        }
+      }
+    },
+    {
+      "createItem": {
+        "item": {
+          "itemId": "00000014",
+          "title": "placement_3_steamuui",
+          "description": "",
+          "questionItem": {
+            "question": {
+              "questionId": "1014",
+              "textQuestion": {}
+            }
+          }
+        },
+        "location": {
+          "index": 14
+        }
+      }
+    },
+    {
+      "createItem": {
+        "item": {
+          "itemId": "00000015",
+          "title": "placement_3_color",
+          "description": "",
+          "questionItem": {
+            "question": {
+              "questionId": "1015",
+              "textQuestion": {}
+            }
+          }
+        },
+        "location": {
+          "index": 15
+        }
+      }
+    },
+    {
+      "createItem": {
+        "item": {
+          "itemId": "00000016",
+          "title": "placement_4_name",
+          "description": "",
+          "questionItem": {
+            "question": {
+              "questionId": "1016",
+              "textQuestion": {}
+            }
+          }
+        },
+        "location": {
+          "index": 16
+        }
+      }
+    },
+    {
+      "createItem": {
+        "item": {
+          "itemId": "00000017",
+          "title": "placement_4_leader",
+          "description": "",
+          "questionItem": {
+            "question": {
+              "questionId": "1017",
+              "textQuestion": {}
+            }
+          }
+        },
+        "location": {
+          "index": 17
+        }
+      }
+    },
+    {
+      "createItem": {
+        "item": {
+          "itemId": "00000018",
+          "title": "placement_4_steamuui",
+          "description": "",
+          "questionItem": {
+            "question": {
+              "questionId": "1018",
+              "textQuestion": {}
+            }
+          }
+        },
+        "location": {
+          "index": 18
+        }
+      }
+    },
+    {
+      "createItem": {
+        "item": {
+          "itemId": "00000019",
+          "title": "placement_4_color",
+          "description": "",
+          "questionItem": {
+            "question": {
+              "questionId": "1019",
+              "textQuestion": {}
+            }
+          }
+        },
+        "location": {
+          "index": 19
+        }
+      }
+    },
+    {
+      "createItem": {
+        "item": {
+          "itemId": "00000020",
+          "title": "leader_selection",
+          "description": "",
+          "questionItem": {
+            "question": {
+              "questionId": "1020",
+              "textQuestion": {}
+            }
+          }
+        },
+        "location": {
+          "index": 20
+        }
+      }
+    },
+    {
+      "createItem": {
+        "item": {
+          "itemId": "00000021",
+          "title": "leader_pool_size",
+          "description": "",
+          "questionItem": {
+            "question": {
+              "questionId": "1021",
+              "textQuestion": {}
+            }
+          }
+        },
+        "location": {
+          "index": 21
+        }
+      }
+    },
+    {
+      "createItem": {
+        "item": {
+          "itemId": "00000022",
+          "title": "number_of_players",
+          "description": "",
+          "questionItem": {
+            "question": {
+              "questionId": "1022",
+              "textQuestion": {}
+            }
+          }
+        },
+        "location": {
+          "index": 22
+        }
+      }
+    },
+    {
+      "createItem": {
+        "item": {
+          "itemId": "00000023",
+          "title": "bloodline",
+          "description": "",
+          "questionItem": {
+            "question": {
+              "questionId": "1023",
+              "textQuestion": {}
+            }
+          }
+        },
+        "location": {
+          "index": 23
+        }
+      }
+    }
+  ]
+}
