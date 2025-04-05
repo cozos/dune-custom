@@ -12091,7 +12091,8 @@ local multiply = CardEffect.multiply
                                                                                                                 end
                                                                                                             end
                                                                                                         end
-                                                                                                        if settings.wormEatsTheCard then
+                                                                                                        -- TODO(arwin.tio) use settings.wormEatsTheCard
+                                                                                                        if true then
                                                                                                             ImperiumRow.wormEatsTheCard()
                                                                                                         end
                                                                                                     elseif phase == "recall" then
@@ -19430,7 +19431,9 @@ local multiply = CardEffect.multiply
 
                                                                                                         ---
                                                                                                         function ImperiumRow._replenish(indexInRow)
-                                                                                                            if settings.wormEatsTheCard then
+                                                                                                            printToAll(string.format("ImperiumRow._replenish %d", indexInRow), "Pink")
+                                                                                                            -- TODO(arwin.tio) use settings.wormEatsTheCard
+                                                                                                            if true then
                                                                                                                 printToAll("SHIFT IMPERIUM", "Pink")
                                                                                                                 for i = indexInRow, 2, -1 do  -- Start at the gap, go backwards to position 2
                                                                                                                     local prevZone = ImperiumRow.slotZones[i-1]  -- Get the zone to the left
