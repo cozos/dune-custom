@@ -11908,6 +11908,7 @@ local multiply = CardEffect.multiply
                                                                                         local Music = Module.lazyRequire("Music")
                                                                                         local Hagal = Module.lazyRequire("Hagal")
                                                                                         local Board = Module.lazyRequire("Board")
+                                                                                        local ImperiumRow = Module.lazyRequire("ImperiumRow")
 
                                                                                         local MainBoard = {
                                                                                             spaceDetails = {
@@ -12091,8 +12092,8 @@ local multiply = CardEffect.multiply
                                                                                                                 end
                                                                                                             end
                                                                                                         end
-                                                                                                        -- TODO(arwin.tio) use settings.wormEatsTheCard
-                                                                                                        if true then
+
+                                                                                                        if settings.wormEatsTheCard then
                                                                                                             ImperiumRow.wormEatsTheCard()
                                                                                                         end
                                                                                                     elseif phase == "recall" then
@@ -19431,11 +19432,9 @@ local multiply = CardEffect.multiply
 
                                                                                                         ---
                                                                                                         function ImperiumRow._replenish(indexInRow)
-                                                                                                            printToAll(string.format("ImperiumRow._replenish %d", indexInRow), "Pink")
+                                                                                                            Helper.log(string.format("ARWIN: ImperiumRow._replenish %d", indexInRow))
                                                                                                             -- TODO(arwin.tio) use settings.wormEatsTheCard
                                                                                                             if true then
-                                                                                                                printToAll("SHIFT IMPERIUM", "Pink")
-
                                                                                                                 local actions = {}
                                                                                                                 for i = indexInRow, 2, -1 do  -- Start at the gap, go backwards to position 2
                                                                                                                     local prevZone = ImperiumRow.slotZones[i-1]  -- Get the zone to the left
@@ -19445,7 +19444,7 @@ local multiply = CardEffect.multiply
                                                                                                                         table.insert(
                                                                                                                             actions,
                                                                                                                             function()
-                                                                                                                                printToAll(string.format("Move %d to %d", i-1, i), "Pink")
+                                                                                                                                Helper.log(string.format("ARWIN: Move Imperium Zone %d to %d", i-1, i))
                                                                                                                                 return Helper.moveCardFromZone(prevZone, currentZone.getPosition(), Vector(0, 0, 0))
                                                                                                                             end
                                                                                                                         )
@@ -19457,7 +19456,7 @@ local multiply = CardEffect.multiply
                                                                                                                 table.insert(
                                                                                                                     actions,
                                                                                                                     function()
-                                                                                                                        printToAll("Fill spot 1", "Pink")
+                                                                                                                        Helper.log("ARWIN: Imperium Replenish Zone 1")
                                                                                                                         return Helper.moveCardFromZone(ImperiumRow.deckZone, position, Vector(0, 180, 0))
                                                                                                                     end
                                                                                                                 )
