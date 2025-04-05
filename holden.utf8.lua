@@ -19019,7 +19019,7 @@ local multiply = CardEffect.multiply
                                                                                                         if TurnControl.getPlayerCount() == 6 then
                                                                                                             if Commander.isCommander(color) then
                                                                                                                 if not InfluenceTrack.hasAccess(color, faction) then
-                                                                                                                    Helper.log("Influence bonus low level redirection (should not happen)!")
+                                                                                                                    log("Influence bonus low level redirection (should not happen)!")
                                                                                                                     finalColor = Commander.getActivatedAlly(color)
                                                                                                                     if faction == "emperor" then
                                                                                                                         finalFaction = "greatHouses"
@@ -19423,7 +19423,7 @@ local multiply = CardEffect.multiply
 
                                                                                                         ---
                                                                                                         function ImperiumRow._replenish(indexInRow)
-                                                                                                            Helper.log(string.format("ARWIN: ImperiumRow._replenish %d", indexInRow))
+                                                                                                            log(string.format("ARWIN: ImperiumRow._replenish %d", indexInRow))
                                                                                                             local actions = {}
                                                                                                             for i = indexInRow, 2, -1 do  -- Start at the gap, go backwards to position 2
                                                                                                                 local prevZone = ImperiumRow.slotZones[i-1]  -- Get the zone to the left
@@ -19433,7 +19433,7 @@ local multiply = CardEffect.multiply
                                                                                                                     table.insert(
                                                                                                                         actions,
                                                                                                                         function()
-                                                                                                                            Helper.log(string.format("ARWIN: Move Imperium Zone %d to %d", i-1, i))
+                                                                                                                            log(string.format("ARWIN: Move Imperium Zone %d to %d", i-1, i))
                                                                                                                             return Helper.moveCardFromZone(prevZone, currentZone.getPosition(), Vector(0, 0, 0))
                                                                                                                         end
                                                                                                                     )
@@ -19445,7 +19445,7 @@ local multiply = CardEffect.multiply
                                                                                                             table.insert(
                                                                                                                 actions,
                                                                                                                 function()
-                                                                                                                    Helper.log("ARWIN: Imperium Replenish Zone 1")
+                                                                                                                    log("ARWIN: Imperium Replenish Zone 1")
                                                                                                                     return Helper.moveCardFromZone(ImperiumRow.deckZone, position, Vector(0, 180, 0))
                                                                                                                 end
                                                                                                             )
