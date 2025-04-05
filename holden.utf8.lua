@@ -19455,14 +19455,14 @@ local multiply = CardEffect.multiply
                                                                                                             local card = Helper.getCard(ImperiumRow.slotZones[5])
                                                                                                             local continuation = Helper.createContinuation("ImperiumRow.wormEatsTheCard")
                                                                                                             if card then
-                                                                                                                card.addForce(Vector(math.random(-20, 20), math.random(800, 21500), math.random(30, 80)))
+                                                                                                                card.addForce(Vector(math.random(-20, 20), math.random(800, 1000), 40))
                                                                                                                 card.addTorque(Vector(math.random(-2000, 2000), math.random(-2000, 2000), math.random(-2000, 2000)))
 
                                                                                                                 Wait.time(function()
                                                                                                                     -- MainBoard.trash(card)
                                                                                                                     card.destruct()
                                                                                                                     continuation.run()
-                                                                                                                end, 1.75)
+                                                                                                                end, 1.5)
                                                                                                             else
                                                                                                                 continuation.run()
                                                                                                             end
