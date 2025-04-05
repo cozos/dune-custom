@@ -19310,11 +19310,11 @@ local multiply = CardEffect.multiply
                                                                                                                         ImperiumRow.replenishAllEmpty()
                                                                                                                     end),
                                                                                                                     label = "Replenish Imperium",
-                                                                                                                    position = Vector(0, 0, 0),
-                                                                                                                    width = 550,
-                                                                                                                    height = 350,
-                                                                                                                    scale = Vector(3, 3, 3),
-                                                                                                                    font_size = 300,
+                                                                                                                    position = Vector(-1, 0, 0),
+                                                                                                                    width = 200,
+                                                                                                                    height = 200,
+                                                                                                                    scale = Vector(1, 1, 1),
+                                                                                                                    font_size = 50,
                                                                                                                     font_color = {1, 1, 1},
                                                                                                                     color = "Green"
                                                                                                                 }
