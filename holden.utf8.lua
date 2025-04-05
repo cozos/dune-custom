@@ -19310,7 +19310,8 @@ local multiply = CardEffect.multiply
                                                                                                                         ImperiumRow.replenishAllEmpty()
                                                                                                                     end),
                                                                                                                     label = "Replenish Imperium",
-                                                                                                                    position = Vector(-1, 0, 0),
+                                                                                                                    position = Vector(-5, 0, 0),
+                                                                                                                    rotation = Vector(0, 180, 0),
                                                                                                                     width = 200,
                                                                                                                     height = 200,
                                                                                                                     scale = Vector(1, 1, 1),
@@ -19452,10 +19453,18 @@ local multiply = CardEffect.multiply
                                                                                                         function ImperiumRow.wormEatsTheCard()
                                                                                                             printToAll("WORM EATS THE CARD", "Pink")
                                                                                                             local card = Helper.getCard(ImperiumRow.slotZones[5])
+                                                                                                            local continuation = Helper.createContinuation()
                                                                                                             if card then
-                                                                                                                MainBoard.trash(card)
+                                                                                                                card.flick(Vector(5, 50, 5))
+
+                                                                                                                Wait.time(function()
+                                                                                                                    MainBoard.trash(card)
+                                                                                                                    continuation.run()
+                                                                                                                end, 4)
+                                                                                                            else
+                                                                                                                continuation.run()
                                                                                                             end
-                                                                                                            ImperiumRow._replenish(5)
+                                                                                                            continuation.doAfter(ImperiumRow._replenish(5))
                                                                                                         end
 
                                                                                                         ---
