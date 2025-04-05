@@ -19309,8 +19309,59 @@ local multiply = CardEffect.multiply
                                                                                                                     click_function = Helper.registerGlobalCallback(function ()
                                                                                                                         ImperiumRow.replenishAllEmpty()
                                                                                                                     end),
-                                                                                                                    label = "Replenish Imperium",
-                                                                                                                    position = Vector(4, 0, 0),
+                                                                                                                    label = "Replenish Imperium 1,0,0",
+                                                                                                                    position = Vector(1, 0, 0),
+                                                                                                                    rotation = Vector(0, 180, 0),
+                                                                                                                    width = 200,
+                                                                                                                    height = 200,
+                                                                                                                    scale = Vector(1, 1, 1),
+                                                                                                                    font_size = 50,
+                                                                                                                    font_color = {1, 1, 1},
+                                                                                                                    color = "Green"
+                                                                                                                }
+                                                                                                            )
+                                                                                                            Helper.createButton(
+                                                                                                                getObjectFromGUID("aaabbb"),
+                                                                                                                {
+                                                                                                                    click_function = Helper.registerGlobalCallback(function ()
+                                                                                                                        ImperiumRow.replenishAllEmpty()
+                                                                                                                    end),
+                                                                                                                    label = "Replenish Imperium -1,0,0",
+                                                                                                                    position = Vector(-1, 0, 0),
+                                                                                                                    rotation = Vector(0, 180, 0),
+                                                                                                                    width = 200,
+                                                                                                                    height = 200,
+                                                                                                                    scale = Vector(1, 1, 1),
+                                                                                                                    font_size = 50,
+                                                                                                                    font_color = {1, 1, 1},
+                                                                                                                    color = "Green"
+                                                                                                                }
+                                                                                                            )
+                                                                                                            Helper.createButton(
+                                                                                                                getObjectFromGUID("aaabbb"),
+                                                                                                                {
+                                                                                                                    click_function = Helper.registerGlobalCallback(function ()
+                                                                                                                        ImperiumRow.replenishAllEmpty()
+                                                                                                                    end),
+                                                                                                                    label = "Replenish Imperium 2,-2,0",
+                                                                                                                    position = Vector(2, -2, 0),
+                                                                                                                    rotation = Vector(0, 180, 0),
+                                                                                                                    width = 200,
+                                                                                                                    height = 200,
+                                                                                                                    scale = Vector(1, 1, 1),
+                                                                                                                    font_size = 50,
+                                                                                                                    font_color = {1, 1, 1},
+                                                                                                                    color = "Green"
+                                                                                                                }
+                                                                                                            )
+                                                                                                            Helper.createButton(
+                                                                                                                getObjectFromGUID("aaabbb"),
+                                                                                                                {
+                                                                                                                    click_function = Helper.registerGlobalCallback(function ()
+                                                                                                                        ImperiumRow.replenishAllEmpty()
+                                                                                                                    end),
+                                                                                                                    label = "Replenish Imperium -2, -2, 0",
+                                                                                                                    position = Vector(-2, -2, 0),
                                                                                                                     rotation = Vector(0, 180, 0),
                                                                                                                     width = 200,
                                                                                                                     height = 200,
@@ -19455,7 +19506,8 @@ local multiply = CardEffect.multiply
                                                                                                             local card = Helper.getCard(ImperiumRow.slotZones[5])
                                                                                                             local continuation = Helper.createContinuation("ImperiumRow.wormEatsTheCard")
                                                                                                             if card then
-                                                                                                                card.flick(Vector(5, 50, 5))
+                                                                                                                card.addForce(Vector(5, 50, 5))       -- Fly up and forward
+                                                                                                                card.addTorque(Vector(0, 20, 10))
 
                                                                                                                 Wait.time(function()
                                                                                                                     MainBoard.trash(card)
