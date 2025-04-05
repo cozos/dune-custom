@@ -19310,7 +19310,7 @@ local multiply = CardEffect.multiply
                                                                                                                         ImperiumRow.replenishAllEmpty()
                                                                                                                     end),
                                                                                                                     label = "Replenish Imperium",
-                                                                                                                    position = Vector(-5, 0, 0),
+                                                                                                                    position = Vector(4, 0, 0),
                                                                                                                     rotation = Vector(0, 180, 0),
                                                                                                                     width = 200,
                                                                                                                     height = 200,
@@ -19453,7 +19453,7 @@ local multiply = CardEffect.multiply
                                                                                                         function ImperiumRow.wormEatsTheCard()
                                                                                                             printToAll("WORM EATS THE CARD", "Pink")
                                                                                                             local card = Helper.getCard(ImperiumRow.slotZones[5])
-                                                                                                            local continuation = Helper.createContinuation()
+                                                                                                            local continuation = Helper.createContinuation("ImperiumRow.wormEatsTheCard")
                                                                                                             if card then
                                                                                                                 card.flick(Vector(5, 50, 5))
 
@@ -19464,7 +19464,7 @@ local multiply = CardEffect.multiply
                                                                                                             else
                                                                                                                 continuation.run()
                                                                                                             end
-                                                                                                            continuation.doAfter(ImperiumRow._replenish(5))
+                                                                                                            return continuation.doAfter(ImperiumRow._replenish(5))
                                                                                                         end
 
                                                                                                         ---
