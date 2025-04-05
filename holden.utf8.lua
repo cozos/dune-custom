@@ -1,4 +1,4 @@
-﻿-- ARWIN'S VERSION Bundled by luabundle {"version":"1.7.0"}
+-- ARWIN'S VERSION Bundled by luabundle {"version":"1.7.0"}
 local __bundle_require, __bundle_loaded, __bundle_register, __bundle_modules = (function(superRequire)
     local loadingPlaceholder = {[{}] = true}
 
