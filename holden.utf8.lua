@@ -19435,18 +19435,34 @@ local multiply = CardEffect.multiply
                                                                                                             -- TODO(arwin.tio) use settings.wormEatsTheCard
                                                                                                             if true then
                                                                                                                 printToAll("SHIFT IMPERIUM", "Pink")
+
+                                                                                                                local actions = {}
                                                                                                                 for i = indexInRow, 2, -1 do  -- Start at the gap, go backwards to position 2
                                                                                                                     local prevZone = ImperiumRow.slotZones[i-1]  -- Get the zone to the left
                                                                                                                     local currentZone = ImperiumRow.slotZones[i]  -- Get current zone
 
                                                                                                                     if #prevZone.getObjects() > 0 then
-                                                                                                                        Helper.moveCardFromZone(prevZone, currentZone.getPosition(), Vector(0, 0, 0))
+                                                                                                                        table.insert(
+                                                                                                                            actions,
+                                                                                                                            function()
+                                                                                                                                printToAll(string.format("Move %d to %d", i-1, i), "Pink")
+                                                                                                                                return Helper.moveCardFromZone(prevZone, currentZone.getPosition(), Vector(0, 0, 0))
+                                                                                                                            end
+                                                                                                                        )
                                                                                                                     end
                                                                                                                 end
 
                                                                                                                 -- Then put new card in leftmost position (slot 1)
                                                                                                                 local position = ImperiumRow.slotZones[1].getPosition()
-                                                                                                                Helper.moveCardFromZone(ImperiumRow.deckZone, position, Vector(0, 180, 0))
+                                                                                                                table.insert(
+                                                                                                                    actions,
+                                                                                                                    function()
+                                                                                                                        printToAll("Fill spot 1", "Pink")
+                                                                                                                        return Helper.moveCardFromZone(ImperiumRow.deckZone, position, Vector(0, 180, 0))
+                                                                                                                    end
+                                                                                                                )
+
+                                                                                                                return Helper.chainActions(actions)
                                                                                                             else
                                                                                                                 printToAll("DOESN'T SHIFT IMPERIUM", "Pink")
                                                                                                                 local position = ImperiumRow.slotZones[indexInRow].getPosition()
