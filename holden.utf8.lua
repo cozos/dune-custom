@@ -19436,13 +19436,14 @@ local multiply = CardEffect.multiply
                                                                                                             local actions = {}
                                                                                                             for i = 5, 1, -1 do
                                                                                                                 local currentZone = ImperiumRow.slotZones[i]  -- Get current zone
+                                                                                                                local position = currentZone.getPosition()
 
                                                                                                                 if #currentZone.getObjects() == 0 then
                                                                                                                     log(string.format("ARWIN: Found empty at %d", i))
                                                                                                                     table.insert(
                                                                                                                         actions,
                                                                                                                         function()
-                                                                                                                            return ImperiumRow._replenish(i)
+                                                                                                                            return Helper.moveCardFromZone(ImperiumRow.deckZone, position, Vector(0, 180, 0))
                                                                                                                         end
                                                                                                                     )
                                                                                                                 end
@@ -19455,12 +19456,11 @@ local multiply = CardEffect.multiply
                                                                                                             local card = Helper.getCard(ImperiumRow.slotZones[5])
                                                                                                             local continuation = Helper.createContinuation("ImperiumRow.wormEatsTheCard")
                                                                                                             if card then
-                                                                                                                card.addForce(Vector(math.random(-20, 20), math.random(800, 1000), 40))
-                                                                                                                card.addTorque(Vector(math.random(-2000, 2000), math.random(-2000, 2000), math.random(-2000, 2000)))
+                                                                                                                card.addForce(Vector(math.random(-20, 20), math.random(300, 500), 40))
+                                                                                                                card.addTorque(Vector(math.random(-500, 500), math.random(-500, 500), math.random(-500, 500)))
 
                                                                                                                 Wait.time(function()
-                                                                                                                    -- MainBoard.trash(card)
-                                                                                                                    card.destruct()
+                                                                                                                    MainBoard.trash(card)
                                                                                                                     continuation.run()
                                                                                                                 end, 1.5)
                                                                                                             else
