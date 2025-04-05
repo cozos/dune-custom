@@ -74,7 +74,6 @@ autoLoadedSettings = {
     hotSeat = true,
     firstPlayer = "Red",
     randomizePlayerPositions = false,
-    wormEatsTheCard = true,
     useContracts = true,
     legacy = false,
     merakon = false,
@@ -99,7 +98,6 @@ autoLoadedSettings = {
     --     hotSeat = true,
     --     firstPlayer = "Red",
     --     randomizePlayerPositions = false,
-    --     wormEatsTheCard = true,
     --     useContracts = true,
     --     legacy = false,
     --     merakon = false,
@@ -197,7 +195,6 @@ autoLoadedSettings = {
                 Red = "Red",
             },
             randomizePlayerPositions = true,
-            wormEatsTheCard = true,
             difficulty_all = allModules.Hagal.getDifficulties(),
             difficulty = XmlUI.HIDDEN,
             autoTurnInSolo = XmlUI.DISABLED,
@@ -486,11 +483,6 @@ autoLoadedSettings = {
         end
 
         --- UI callback (cf. XML).
-        function setWormEatsTheCard(player, value, id)
-            Controller.ui:fromUI(player, value, id)
-        end
-
-        --- UI callback (cf. XML).
         function setVirtualHotSeat(player, value, id)
             Controller.ui:fromUI(player, value, id)
             if value == "True" then
@@ -691,7 +683,6 @@ autoLoadedSettings = {
                 hotSeat = not Controller.isUndefined(Controller.fields.virtualHotSeatMode),
                 firstPlayer = Controller.fields.firstPlayer,
                 randomizePlayerPositions = Controller.fields.randomizePlayerPositions == true,
-                wormEatsTheCard = Controller.fields.wormEatsTheCard == true,
                 difficulty = Controller.fields.difficulty,
                 autoTurnInSolo = Controller.fields.autoTurnInSolo == true,
                 imperiumRowChurn = Controller.fields.imperiumRowChurn == true,
@@ -11859,6 +11850,7 @@ local multiply = CardEffect.multiply
                                                                                             atomics = "https://steamusercontent-a.akamaihd.net/ugc/2502404390141278359/C9F0035DAF76EE6B353F9885C2859EBB282A9988/",
                                                                                             battle = "https://steamusercontent-a.akamaihd.net/ugc/2502404390141336378/474E09BB37578C5FC1CFDE001E7D6785EE54C52F/",
                                                                                             turn = "https://steamusercontent-a.akamaihd.net/ugc/2502404390141336932/2C9434C28270DDD87D33648DA7B17B23DA0D5ECF/",
+                                                                                            chomp = "https://raw.githubusercontent.com/cozos/dune-custom/master/eating-a-cracker-mouth-open-81375.mp3"
                                                                                         }}
 
                                                                                         ---
@@ -12093,9 +12085,8 @@ local multiply = CardEffect.multiply
                                                                                                             end
                                                                                                         end
 
-                                                                                                        if settings.wormEatsTheCard then
-                                                                                                            ImperiumRow.wormEatsTheCard()
-                                                                                                        end
+                                                                                                        Music.play("chomp")
+                                                                                                        ImperiumRow.wormEatsTheCard()
                                                                                                     elseif phase == "recall" then
 
                                                                                                         -- Recalling dreadnoughts in controlable spaces.
@@ -19433,40 +19424,33 @@ local multiply = CardEffect.multiply
                                                                                                         ---
                                                                                                         function ImperiumRow._replenish(indexInRow)
                                                                                                             Helper.log(string.format("ARWIN: ImperiumRow._replenish %d", indexInRow))
-                                                                                                            -- TODO(arwin.tio) use settings.wormEatsTheCard
-                                                                                                            if true then
-                                                                                                                local actions = {}
-                                                                                                                for i = indexInRow, 2, -1 do  -- Start at the gap, go backwards to position 2
-                                                                                                                    local prevZone = ImperiumRow.slotZones[i-1]  -- Get the zone to the left
-                                                                                                                    local currentZone = ImperiumRow.slotZones[i]  -- Get current zone
+                                                                                                            local actions = {}
+                                                                                                            for i = indexInRow, 2, -1 do  -- Start at the gap, go backwards to position 2
+                                                                                                                local prevZone = ImperiumRow.slotZones[i-1]  -- Get the zone to the left
+                                                                                                                local currentZone = ImperiumRow.slotZones[i]  -- Get current zone
 
-                                                                                                                    if #prevZone.getObjects() > 0 then
-                                                                                                                        table.insert(
-                                                                                                                            actions,
-                                                                                                                            function()
-                                                                                                                                Helper.log(string.format("ARWIN: Move Imperium Zone %d to %d", i-1, i))
-                                                                                                                                return Helper.moveCardFromZone(prevZone, currentZone.getPosition(), Vector(0, 0, 0))
-                                                                                                                            end
-                                                                                                                        )
-                                                                                                                    end
+                                                                                                                if #prevZone.getObjects() > 0 then
+                                                                                                                    table.insert(
+                                                                                                                        actions,
+                                                                                                                        function()
+                                                                                                                            Helper.log(string.format("ARWIN: Move Imperium Zone %d to %d", i-1, i))
+                                                                                                                            return Helper.moveCardFromZone(prevZone, currentZone.getPosition(), Vector(0, 0, 0))
+                                                                                                                        end
+                                                                                                                    )
                                                                                                                 end
-
-                                                                                                                -- Then put new card in leftmost position (slot 1)
-                                                                                                                local position = ImperiumRow.slotZones[1].getPosition()
-                                                                                                                table.insert(
-                                                                                                                    actions,
-                                                                                                                    function()
-                                                                                                                        Helper.log("ARWIN: Imperium Replenish Zone 1")
-                                                                                                                        return Helper.moveCardFromZone(ImperiumRow.deckZone, position, Vector(0, 180, 0))
-                                                                                                                    end
-                                                                                                                )
-
-                                                                                                                return Helper.chainActions(actions)
-                                                                                                            else
-                                                                                                                printToAll("DOESN'T SHIFT IMPERIUM", "Pink")
-                                                                                                                local position = ImperiumRow.slotZones[indexInRow].getPosition()
-                                                                                                                Helper.moveCardFromZone(ImperiumRow.deckZone, position, Vector(0, 180, 0))
                                                                                                             end
+
+                                                                                                            -- Then put new card in leftmost position (slot 1)
+                                                                                                            local position = ImperiumRow.slotZones[1].getPosition()
+                                                                                                            table.insert(
+                                                                                                                actions,
+                                                                                                                function()
+                                                                                                                    Helper.log("ARWIN: Imperium Replenish Zone 1")
+                                                                                                                    return Helper.moveCardFromZone(ImperiumRow.deckZone, position, Vector(0, 180, 0))
+                                                                                                                end
+                                                                                                            )
+
+                                                                                                            return Helper.chainActions(actions)
                                                                                                         end
 
                                                                                                         return ImperiumRow
