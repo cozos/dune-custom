@@ -19302,6 +19302,23 @@ local multiply = CardEffect.multiply
 
                                                                                                         ---
                                                                                                         function ImperiumRow.setUp(settings)
+                                                                                                            Helper.createButton(
+                                                                                                                getObjectFromGUID("aaabbb"),
+                                                                                                                {
+                                                                                                                    click_function = function ()
+                                                                                                                        ImperiumRow.replenishAllEmpty()
+                                                                                                                    end,
+                                                                                                                    label = "Replenish Imperium",
+                                                                                                                    position = Vector(0, 0, 0),
+                                                                                                                    width = 550,
+                                                                                                                    height = 350,
+                                                                                                                    scale = Vector(3, 3, 3),
+                                                                                                                    font_size = 300,
+                                                                                                                    font_color = {1, 1, 1},
+                                                                                                                    color = "Green"
+                                                                                                                }
+                                                                                                            )
+
                                                                                                             local continuation = Helper.createContinuation("ImperiumRow.setUp")
                                                                                                             Deck.generateImperiumDeck(ImperiumRow.deckZone, settings.useContracts, settings.riseOfIx, settings.immortality, settings.legacy, settings.merakon).doAfter(function (deck)
                                                                                                                 assert(deck, "No Imperium deck!")
@@ -19412,6 +19429,25 @@ local multiply = CardEffect.multiply
                                                                                                             printToAll(I18N("churnImperiumRow", {count = count, card = I18N.agree(count, "card")}), "Pink")
                                                                                                         end
 
+                                                                                                        function ImperiumRow.replenishAllEmpty()
+                                                                                                            log("ARWIN: replenishAllEmpty!")
+                                                                                                            local actions = {}
+                                                                                                            for i = 5, 1, -1 do
+                                                                                                                local currentZone = ImperiumRow.slotZones[i]  -- Get current zone
+
+                                                                                                                if #currentZone.getObjects() == 0 then
+                                                                                                                    log(string.format("ARWIN: Found empty at %d", i))
+                                                                                                                    table.insert(
+                                                                                                                        actions,
+                                                                                                                        function()
+                                                                                                                            return ImperiumRow._replenish(i)
+                                                                                                                        end
+                                                                                                                    )
+                                                                                                                end
+                                                                                                            end
+                                                                                                            return Helper.chainActions(actions)
+                                                                                                        end
+
                                                                                                         function ImperiumRow.wormEatsTheCard()
                                                                                                             printToAll("WORM EATS THE CARD", "Pink")
                                                                                                             local card = Helper.getCard(ImperiumRow.slotZones[5])
@@ -19434,7 +19470,7 @@ local multiply = CardEffect.multiply
                                                                                                                         actions,
                                                                                                                         function()
                                                                                                                             log(string.format("ARWIN: Move Imperium Zone %d to %d", i-1, i))
-                                                                                                                            return Helper.moveCardFromZone(prevZone, currentZone.getPosition(), Vector(0, 0, 0))
+                                                                                                                            return Helper.moveCardFromZone(prevZone, currentZone.getPosition(), Vector(0, 180, 0))
                                                                                                                         end
                                                                                                                     )
                                                                                                                 end
