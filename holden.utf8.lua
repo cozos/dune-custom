@@ -12085,7 +12085,8 @@ local multiply = CardEffect.multiply
                                                                                                             end
                                                                                                         end
 
-                                                                                                        Music.play("chomp")
+                                                                                                        -- TODO(arwin.tio) Get better sound
+                                                                                                        -- Music.play("chomp")
                                                                                                         ImperiumRow.wormEatsTheCard()
                                                                                                     elseif phase == "recall" then
 
@@ -19305,9 +19306,9 @@ local multiply = CardEffect.multiply
                                                                                                             Helper.createButton(
                                                                                                                 getObjectFromGUID("aaabbb"),
                                                                                                                 {
-                                                                                                                    click_function = function ()
+                                                                                                                    click_function = Helper.registerGlobalCallback(function ()
                                                                                                                         ImperiumRow.replenishAllEmpty()
-                                                                                                                    end,
+                                                                                                                    end),
                                                                                                                     label = "Replenish Imperium",
                                                                                                                     position = Vector(0, 0, 0),
                                                                                                                     width = 550,
