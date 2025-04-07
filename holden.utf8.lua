@@ -19354,7 +19354,7 @@ local multiply = CardEffect.multiply
                                                                                                                     click_function = Helper.registerGlobalCallback(function ()
                                                                                                                         ImperiumRow.yeet()
                                                                                                                     end),
-                                                                                                                    label = "YEET",
+                                                                                                                    label = "Are you a retard?",
                                                                                                                     position = Vector(1.5, 0, 0),
                                                                                                                     rotation = Vector(0, 180, 0),
                                                                                                                     width = 200,
