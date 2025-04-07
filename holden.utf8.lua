@@ -74,6 +74,7 @@ autoLoadedSettings = {
     hotSeat = true,
     firstPlayer = "Red",
     randomizePlayerPositions = false,
+    wormEatsTheCard = true,
     useContracts = true,
     legacy = false,
     merakon = false,
@@ -98,6 +99,7 @@ autoLoadedSettings = {
     --     hotSeat = true,
     --     firstPlayer = "Red",
     --     randomizePlayerPositions = false,
+    --     wormEatsTheCard = true,
     --     useContracts = true,
     --     legacy = false,
     --     merakon = false,
@@ -195,6 +197,7 @@ autoLoadedSettings = {
                 Red = "Red",
             },
             randomizePlayerPositions = true,
+            wormEatsTheCard = true,
             difficulty_all = allModules.Hagal.getDifficulties(),
             difficulty = XmlUI.HIDDEN,
             autoTurnInSolo = XmlUI.DISABLED,
@@ -483,6 +486,11 @@ autoLoadedSettings = {
         end
 
         --- UI callback (cf. XML).
+        function setWormEatsTheCard(player, value, id)
+            Controller.ui:fromUI(player, value, id)
+        end
+
+        --- UI callback (cf. XML).
         function setVirtualHotSeat(player, value, id)
             Controller.ui:fromUI(player, value, id)
             if value == "True" then
@@ -683,6 +691,7 @@ autoLoadedSettings = {
                 hotSeat = not Controller.isUndefined(Controller.fields.virtualHotSeatMode),
                 firstPlayer = Controller.fields.firstPlayer,
                 randomizePlayerPositions = Controller.fields.randomizePlayerPositions == true,
+                wormEatsTheCard = Controller.fields.wormEatsTheCard == true,
                 difficulty = Controller.fields.difficulty,
                 autoTurnInSolo = Controller.fields.autoTurnInSolo == true,
                 imperiumRowChurn = Controller.fields.imperiumRowChurn == true,
@@ -911,6 +920,7 @@ autoLoadedSettings = {
                 numberOfPlayers = 0,
                 hotseat = false,
                 randomizePlayerPositions = false,
+                wormEatsTheCard = false,
                 legacy = false,
                 useContracts = false,
                 riseOfIx = false,
@@ -967,6 +977,7 @@ autoLoadedSettings = {
                         "numberOfPlayers",
                         "hotseat",
                         "randomizePlayerPositions",
+                        "wormEatsTheCard",
                         "useContracts",
                         "legacy",
                         "riseOfIx",
@@ -12085,9 +12096,11 @@ local multiply = CardEffect.multiply
                                                                                                             end
                                                                                                         end
 
-                                                                                                        -- TODO(arwin.tio) Get better sound
-                                                                                                        -- Music.play("chomp")
-                                                                                                        ImperiumRow.wormEatsTheCard()
+                                                                                                        if settings.wormEatsTheCard then
+                                                                                                            -- TODO(arwin.tio) Get better sound
+                                                                                                            -- Music.play("chomp")
+                                                                                                            ImperiumRow.wormEatsTheCard()
+                                                                                                        end
                                                                                                     elseif phase == "recall" then
 
                                                                                                         -- Recalling dreadnoughts in controlable spaces.
@@ -14912,6 +14925,7 @@ local multiply = CardEffect.multiply
                                                                                                 firstPlayer = "Premier joueur",
                                                                                                 randomizePlayersPositions = "M??langer les positions des joueurs",
                                                                                                 randomizePlayersPositionTooltip = "Aucun joueur ne doit utiliser le si??ge noir pendant\nque les positions des joueurs sont m??lang??es.",
+                                                                                                wormEatsTheCardTooltip = "LMAO FRENCH PEOPLE TABARNAK",
                                                                                                 extensions = "Extensions",
                                                                                                 useContracts = "Contrats de la CHOM",
                                                                                                 legacy = "Dune : Imperium",
@@ -15857,6 +15871,7 @@ local multiply = CardEffect.multiply
                                                                                                 firstPlayer = "First Player",
                                                                                                 randomizePlayersPositions = "Randomize players' positions",
                                                                                                 randomizePlayersPositionTooltip = "No player must use the black seat while\nthe player positions are shuffled.",
+                                                                                                wormEatsTheCardTooltip = "Enable Worm Eats The Card mode https://boardgamegeek.com/thread/2577038/the-sand-worms-eats-cards",
                                                                                                 extensions = "Extensions",
                                                                                                 useContracts = "CHOAM contracts",
                                                                                                 legacy = "Dune: Imperium",
@@ -19284,6 +19299,10 @@ local multiply = CardEffect.multiply
 
                                                                                                     ---
                                                                                                     function ImperiumRow.onLoad(state)
+                                                                                                        local wormEatsTheCard = true
+                                                                                                        if state.settings then
+                                                                                                            local enableWormEatsTheCard = state.settings.wormEatsTheCard
+                                                                                                        end
                                                                                                         Helper.append(ImperiumRow, Helper.resolveGUIDs(false, {
                                                                                                             deckZone = "8bd982",
                                                                                                             -- FIXME Confusing "reserve" wording.
@@ -19295,6 +19314,7 @@ local multiply = CardEffect.multiply
                                                                                                                 '641974',
                                                                                                                 'c6dbed'
                                                                                                             }}))
+                                                                                                            enableWormEatsTheCard = enableWormEatsTheCard,
 
                                                                                                             if state.settings then
                                                                                                                 ImperiumRow._transientSetUp()
@@ -19318,6 +19338,24 @@ local multiply = CardEffect.multiply
                                                                                                                     font_size = 50,
                                                                                                                     font_color = {1, 1, 1},
                                                                                                                     color = "Green"
+                                                                                                                }
+                                                                                                            )
+
+                                                                                                            Helper.createButton(
+                                                                                                                getObjectFromGUID("aaabbb"),
+                                                                                                                {
+                                                                                                                    click_function = Helper.registerGlobalCallback(function ()
+                                                                                                                        ImperiumRow.yeet()
+                                                                                                                    end),
+                                                                                                                    label = "YEET",
+                                                                                                                    position = Vector(1.5, 0, 0),
+                                                                                                                    rotation = Vector(0, 180, 0),
+                                                                                                                    width = 200,
+                                                                                                                    height = 200,
+                                                                                                                    scale = Vector(1, 1, 1),
+                                                                                                                    font_size = 50,
+                                                                                                                    font_color = {1, 1, 1},
+                                                                                                                    color = "Red"
                                                                                                                 }
                                                                                                             )
 
@@ -19431,6 +19469,15 @@ local multiply = CardEffect.multiply
                                                                                                             printToAll(I18N("churnImperiumRow", {count = count, card = I18N.agree(count, "card")}), "Pink")
                                                                                                         end
 
+                                                                                                        function ImperiumRow.yeet()
+                                                                                                            log("ARWIN: yeet!")
+                                                                                                            local cards = Helper.getCards(ImperiumRow.deckZone)
+                                                                                                            for _, card in ipairs(cards) do
+                                                                                                                card.addForce(Vector(math.random(-20, 20), math.random(300, 500), 40))
+                                                                                                                card.addTorque(Vector(math.random(-500, 500), math.random(-500, 500), math.random(-500, 500)))
+                                                                                                            end
+                                                                                                        end
+
                                                                                                         function ImperiumRow.replenishAllEmpty()
                                                                                                             log("ARWIN: replenishAllEmpty!")
                                                                                                             local actions = {}
@@ -19454,28 +19501,25 @@ local multiply = CardEffect.multiply
                                                                                                         function ImperiumRow.wormEatsTheCard()
                                                                                                             printToAll("WORM EATS THE CARD", "Pink")
                                                                                                             local card = Helper.getCard(ImperiumRow.slotZones[5])
-                                                                                                            local continuation = Helper.createContinuation("ImperiumRow.wormEatsTheCard")
                                                                                                             if card then
-                                                                                                                card.addForce(Vector(math.random(-20, 20), math.random(300, 500), 40))
-                                                                                                                card.addTorque(Vector(math.random(-500, 500), math.random(-500, 500), math.random(-500, 500)))
+                                                                                                                -- card.addForce(Vector(math.random(-20, 20), math.random(300, 500), 40))
+                                                                                                                -- card.addTorque(Vector(math.random(-500, 500), math.random(-500, 500), math.random(-500, 500)))
 
-                                                                                                                Wait.time(function()
-                                                                                                                    MainBoard.trash(card)
-                                                                                                                    continuation.run()
-                                                                                                                end, 1.5)
-                                                                                                            else
-                                                                                                                continuation.run()
+                                                                                                                MainBoard.trash(card)
                                                                                                             end
-                                                                                                            return continuation.doAfter(
-                                                                                                                function()
-                                                                                                                    return ImperiumRow._replenish(5)
-                                                                                                                end
-                                                                                                            )
+                                                                                                            return ImperiumRow._replenish(5)
                                                                                                         end
 
                                                                                                         ---
                                                                                                         function ImperiumRow._replenish(indexInRow)
-                                                                                                            log(string.format("ARWIN: ImperiumRow._replenish %d", indexInRow))
+                                                                                                            if not ImperiumRow.enableWormEatsTheCard then
+                                                                                                                log(string.format("ARWIN: ImperiumRow._replenish %d with WormEatsTheCard", indexInRow))
+                                                                                                                local position = ImperiumRow.slotZones[indexInRow].getPosition()
+                                                                                                                return Helper.moveCardFromZone(ImperiumRow.deckZone, position, Vector(0, 180, 0))
+                                                                                                            end
+
+                                                                                                            log(string.format("ARWIN: ImperiumRow._replenish %d with WormEatsTheCard", indexInRow))
+
                                                                                                             local actions = {}
                                                                                                             for i = indexInRow, 2, -1 do  -- Start at the gap, go backwards to position 2
                                                                                                                 local prevZone = ImperiumRow.slotZones[i-1]  -- Get the zone to the left
