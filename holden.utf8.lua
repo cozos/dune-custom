@@ -19477,8 +19477,7 @@ local multiply = CardEffect.multiply
                                                                                                         end
 
                                                                                                         function ImperiumRow.yeet()
-                                                                                                            log("ARWIN: yeeeet1!")
-                                                                                                            log("ARWIN: yeeeet2!")
+                                                                                                            log("ARWIN: yeeeet123!")
                                                                                                             local cards = Helper.getCards(Helper.getDeckOrCard(ImperiumRow.deckZone))
                                                                                                             for _, card in pairs(cards) do
                                                                                                                 if card and not card.held_by_color and (card.type == "Card" or card.type == "Deck") then
