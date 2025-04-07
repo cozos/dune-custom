@@ -19478,7 +19478,7 @@ local multiply = CardEffect.multiply
 
                                                                                                         function ImperiumRow.yeet()
                                                                                                             log("ARWIN: yeet!")
-                                                                                                            local cards = Helper.getCards(Helper.getDeckOrCard(zone))
+                                                                                                            local cards = Helper.getCards(Helper.getDeckOrCard(ImperiumRow.deckZone))
                                                                                                             for _, card in ipairs(cards) do
                                                                                                                 card.addForce(Vector(math.random(-20, 20), math.random(300, 500), 40))
                                                                                                                 card.addTorque(Vector(math.random(-500, 500), math.random(-500, 500), math.random(-500, 500)))
