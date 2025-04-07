@@ -19481,9 +19481,12 @@ local multiply = CardEffect.multiply
                                                                                                             log("ARWIN: yeeeet2!")
                                                                                                             local cards = Helper.getCards(Helper.getDeckOrCard(ImperiumRow.deckZone))
                                                                                                             for _, card in pairs(cards) do
-                                                                                                                if card then
+                                                                                                                if card and not card.held_by_color and (card.type == "Card" or card.type == "Deck") then
+                                                                                                                    log(string.format("ARWIN: yeet %s", card.type))
                                                                                                                     card.addForce(Vector(math.random(-20, 20), math.random(300, 500), 40))
                                                                                                                     card.addTorque(Vector(math.random(-500, 500), math.random(-500, 500), math.random(-500, 500)))
+                                                                                                                elif card
+                                                                                                                    log(string.format("ARWIN: fail for type or some reason %s", card.type))
                                                                                                                 else
                                                                                                                     log("ARWIN: null for some reason")
                                                                                                                 end
