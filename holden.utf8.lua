@@ -19299,16 +19299,16 @@ local multiply = CardEffect.multiply
 
                                                                                                     ---
                                                                                                     function ImperiumRow.onLoad(state)
-                                                                                                        local enableWormEatsTheCard = true
                                                                                                         if state.settings then
-                                                                                                            enableWormEatsTheCard = state.settings.wormEatsTheCard
+                                                                                                            ImperiumRow.enableWormEatsTheCard = state.settings.wormEatsTheCard
+                                                                                                        else
+                                                                                                            ImperiumRow.enableWormEatsTheCard = true
                                                                                                         end
                                                                                                         Helper.append(
                                                                                                             ImperiumRow,
                                                                                                             Helper.resolveGUIDs(
                                                                                                                 false,
                                                                                                                 {
-                                                                                                                    enableWormEatsTheCard = enableWormEatsTheCard,
                                                                                                                     deckZone = "8bd982",
                                                                                                                     -- FIXME Confusing "reserve" wording.
                                                                                                                     reservationSlotZone = "473cf7",
@@ -19520,7 +19520,7 @@ local multiply = CardEffect.multiply
                                                                                                         ---
                                                                                                         function ImperiumRow._replenish(indexInRow)
                                                                                                             if not ImperiumRow.enableWormEatsTheCard then
-                                                                                                                log(string.format("ARWIN: ImperiumRow._replenish %d with WormEatsTheCard", indexInRow))
+                                                                                                                log(string.format("ARWIN: ImperiumRow._replenish %d without WormEatsTheCard", indexInRow))
                                                                                                                 local position = ImperiumRow.slotZones[indexInRow].getPosition()
                                                                                                                 return Helper.moveCardFromZone(ImperiumRow.deckZone, position, Vector(0, 180, 0))
                                                                                                             end
