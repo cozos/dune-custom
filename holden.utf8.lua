@@ -19299,23 +19299,29 @@ local multiply = CardEffect.multiply
 
                                                                                                     ---
                                                                                                     function ImperiumRow.onLoad(state)
-                                                                                                        local wormEatsTheCard = true
+                                                                                                        local enableWormEatsTheCard = true
                                                                                                         if state.settings then
-                                                                                                            local enableWormEatsTheCard = state.settings.wormEatsTheCard
+                                                                                                            enableWormEatsTheCard = state.settings.wormEatsTheCard
                                                                                                         end
-                                                                                                        Helper.append(ImperiumRow, Helper.resolveGUIDs(false, {
-                                                                                                            enableWormEatsTheCard = enableWormEatsTheCard,
-                                                                                                            deckZone = "8bd982",
-                                                                                                            -- FIXME Confusing "reserve" wording.
-                                                                                                            reservationSlotZone = "473cf7",
-                                                                                                            slotZones = {
-                                                                                                                '3de1d0',
-                                                                                                                '356e2c',
-                                                                                                                '7edbb3',
-                                                                                                                '641974',
-                                                                                                                'c6dbed'
-                                                                                                            }}))
-
+                                                                                                        Helper.append(
+                                                                                                            ImperiumRow,
+                                                                                                            Helper.resolveGUIDs(
+                                                                                                                false,
+                                                                                                                {
+                                                                                                                    enableWormEatsTheCard = enableWormEatsTheCard,
+                                                                                                                    deckZone = "8bd982",
+                                                                                                                    -- FIXME Confusing "reserve" wording.
+                                                                                                                    reservationSlotZone = "473cf7",
+                                                                                                                    slotZones = {
+                                                                                                                        '3de1d0',
+                                                                                                                        '356e2c',
+                                                                                                                        '7edbb3',
+                                                                                                                        '641974',
+                                                                                                                        'c6dbed'
+                                                                                                                    }
+                                                                                                                }
+                                                                                                            )
+                                                                                                        )
 
                                                                                                             if state.settings then
                                                                                                                 ImperiumRow._transientSetUp()
