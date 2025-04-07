@@ -19348,23 +19348,23 @@ local multiply = CardEffect.multiply
                                                                                                                 }
                                                                                                             )
 
-                                                                                                            Helper.createButton(
-                                                                                                                getObjectFromGUID("aaabbb"),
-                                                                                                                {
-                                                                                                                    click_function = Helper.registerGlobalCallback(function ()
-                                                                                                                        ImperiumRow.yeet()
-                                                                                                                    end),
-                                                                                                                    label = "Are you a retard?",
-                                                                                                                    position = Vector(1.5, 0, 0),
-                                                                                                                    rotation = Vector(0, 180, 0),
-                                                                                                                    width = 200,
-                                                                                                                    height = 200,
-                                                                                                                    scale = Vector(1, 1, 1),
-                                                                                                                    font_size = 50,
-                                                                                                                    font_color = {1, 1, 1},
-                                                                                                                    color = "Red"
-                                                                                                                }
-                                                                                                            )
+                                                                                                            -- Helper.createButton(
+                                                                                                            --     getObjectFromGUID("aaabbb"),
+                                                                                                            --     {
+                                                                                                            --         click_function = Helper.registerGlobalCallback(function ()
+                                                                                                            --             ImperiumRow.yeet()
+                                                                                                            --         end),
+                                                                                                            --         label = "Are you a retard?",
+                                                                                                            --         position = Vector(1.5, 0, 0),
+                                                                                                            --         rotation = Vector(0, 180, 0),
+                                                                                                            --         width = 200,
+                                                                                                            --         height = 200,
+                                                                                                            --         scale = Vector(1, 1, 1),
+                                                                                                            --         font_size = 50,
+                                                                                                            --         font_color = {1, 1, 1},
+                                                                                                            --         color = "Red"
+                                                                                                            --     }
+                                                                                                            -- )
 
                                                                                                             local continuation = Helper.createContinuation("ImperiumRow.setUp")
                                                                                                             Deck.generateImperiumDeck(ImperiumRow.deckZone, settings.useContracts, settings.riseOfIx, settings.immortality, settings.legacy, settings.merakon).doAfter(function (deck)
@@ -19483,8 +19483,8 @@ local multiply = CardEffect.multiply
                                                                                                                 local card = deckOrCard.takeObject()
                                                                                                                 if card and not card.held_by_color and (card.type == "Card" or card.type == "Deck") then
                                                                                                                     log(string.format("ARWIN: yeet %s", card.type))
-                                                                                                                    card.addForce(Vector(math.random(-20, 20), math.random(300, 500), 40))
-                                                                                                                    card.addTorque(Vector(math.random(-500, 500), math.random(-500, 500), math.random(-500, 500)))
+                                                                                                                    card.addForce(Vector(math.random(-20000, 20000), math.random(20000, 20000), math.random(20000, 20000)))
+                                                                                                                    card.addTorque(Vector(math.random(20000, 20000), math.random(20000, 20000), math.random(20000, 20000)))
                                                                                                                 elseif card then
                                                                                                                     log(string.format("ARWIN: fail for type or some reason %s", card.type or "nil"))
                                                                                                                 else
