@@ -19478,8 +19478,9 @@ local multiply = CardEffect.multiply
 
                                                                                                         function ImperiumRow.yeet()
                                                                                                             log("ARWIN: yeeeet123!")
-                                                                                                            local cards = Helper.getCards(Helper.getDeckOrCard(ImperiumRow.deckZone))
-                                                                                                            for _, card in pairs(cards) do
+                                                                                                            local deckOrCard = Helper.getDeckOrCard(ImperiumRow.deckZone)
+                                                                                                            while deckOrCard.getObjectCount() > 1 do
+                                                                                                                local card = deckOrCard.takeObject()
                                                                                                                 if card and not card.held_by_color and (card.type == "Card" or card.type == "Deck") then
                                                                                                                     log(string.format("ARWIN: yeet %s", card.type))
                                                                                                                     card.addForce(Vector(math.random(-20, 20), math.random(300, 500), 40))
