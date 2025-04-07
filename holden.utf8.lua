@@ -19304,6 +19304,7 @@ local multiply = CardEffect.multiply
                                                                                                             local enableWormEatsTheCard = state.settings.wormEatsTheCard
                                                                                                         end
                                                                                                         Helper.append(ImperiumRow, Helper.resolveGUIDs(false, {
+                                                                                                            enableWormEatsTheCard = enableWormEatsTheCard,
                                                                                                             deckZone = "8bd982",
                                                                                                             -- FIXME Confusing "reserve" wording.
                                                                                                             reservationSlotZone = "473cf7",
@@ -19314,7 +19315,7 @@ local multiply = CardEffect.multiply
                                                                                                                 '641974',
                                                                                                                 'c6dbed'
                                                                                                             }}))
-                                                                                                            enableWormEatsTheCard = enableWormEatsTheCard,
+
 
                                                                                                             if state.settings then
                                                                                                                 ImperiumRow._transientSetUp()
