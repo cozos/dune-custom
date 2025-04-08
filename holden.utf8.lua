@@ -10303,7 +10303,7 @@ local multiply = CardEffect.multiply
                                                                                                         if not commanderFound then
                                                                                                             Park.putObject(object, garrisonPark)
                                                                                                             broadcastToAll(I18N("recruitSupplySardaukarCommander"), self.color)
-                                                                                                            self.leader.resources(self.color, "solari", -1)
+                                                                                                            self.leader.resources(self.color, "solari", -1, true)
                                                                                                             commanderFound = true
                                                                                                         end
                                                                                                     end
@@ -10319,7 +10319,7 @@ local multiply = CardEffect.multiply
                                                                                                     if not commanderFound then
                                                                                                         Park.putObject(object, garrisonPark)
                                                                                                         broadcastToAll(I18N("recruitSupplySardaukarCommander"), self.color)
-                                                                                                        self.leader.resources(self.color, "solari", -2)
+                                                                                                        self.leader.resources(self.color, "solari", -2, true)
                                                                                                         commanderFound = true
                                                                                                     end
                                                                                                 end
@@ -17707,12 +17707,13 @@ local multiply = CardEffect.multiply
                                                                                                         end,
 
                                                                                                         --- Ruthless negotiator
-                                                                                                        resources = function (color, resourceName, amount)
+                                                                                                        resources = function (color, resourceName, amount, isRecruitSardaukar)
                                                                                                             local success = Action.resources(color, resourceName, amount)
                                                                                                             if success
+                                                                                                                and not isRecruitSardaukar
                                                                                                                 and resourceName == "solari"
                                                                                                                 and amount < 0
-                                                                                                                and Action.checkContext({phase = "playerTurns", color = color, space = MainBoard.isLandsraadSpace}) then
+                                                                                                                and Action.checkContext({phase = "playerTurns", color = color}) then
                                                                                                                 local leader = PlayBoard.getLeader(color)
                                                                                                                 leader.drawImperiumCards(color, 1)
                                                                                                             end
@@ -26426,11 +26427,10 @@ local multiply = CardEffect.multiply
                                                                                                                                                     ---@param resourceName ResourceName
                                                                                                                                                     ---@param amount integer
                                                                                                                                                     ---@return boolean
-                                                                                                                                                    function Action.resources(color, resourceName, amount)
+                                                                                                                                                    function Action.resources(color, resourceName, amount, isRecruitSardaukar)
                                                                                                                                                         Types.assertIsPlayerColor(color)
                                                                                                                                                         Types.assertIsResourceName(resourceName)
                                                                                                                                                         Types.assertIsInteger(amount)
-
                                                                                                                                                         local resource = PlayBoard.getResource(color, resourceName)
                                                                                                                                                         if resource:get() >= -amount then
                                                                                                                                                             if amount ~= 0 then
